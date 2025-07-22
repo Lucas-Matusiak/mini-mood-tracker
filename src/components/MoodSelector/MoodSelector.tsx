@@ -7,7 +7,9 @@ const moods = [
   { emoji: '😡', label: 'En colère' },
   { emoji: '😴', label: 'Fatigué' },
   { emoji: '😢', label: 'Triste' },
+  { emoji: '😟', label: 'Triste' },
   { emoji: '😌', label: 'Apaisé' },
+  { emoji: '❓', label: '?' }
 ]
 
 export function MoodSelector() {
@@ -28,14 +30,16 @@ export function MoodSelector() {
           <button
             key={mood.emoji}
             onClick={() => handleMoodClick(mood.emoji)}
-            className={`mood-btn ${selectedMood === mood.emoji ? 'active' : ''}`}
+            className={`mood-card ${selectedMood === mood.emoji ? 'active' : ''}`}
             aria-label={mood.label}
           >
             {mood.emoji}
           </button>
         ))}
       </div>
-      {selectedMood && <p className="confirmation">Ton humeur a été enregistrée : {selectedMood}</p>}
+      {selectedMood && (
+        <p className="confirmation">Ton humeur a été enregistrée : {selectedMood}</p>
+      )}
     </div>
   )
 }
