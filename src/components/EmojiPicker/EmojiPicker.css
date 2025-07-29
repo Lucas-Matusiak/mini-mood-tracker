@@ -1,0 +1,65 @@
+.emoji-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.emoji-modal-content {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.emoji-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  margin: 1rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+.emoji-option {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  text-align: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.emoji-option:hover {
+  background: #f0f0f0;
+}
+
+.emoji {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.emoji-label {
+  font-size: 0.8rem;
+  color: #333;
+  white-space: nowrap;
+}
+
+.close-btn {
+  margin-top: 1rem;
+  background: #eee;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+}

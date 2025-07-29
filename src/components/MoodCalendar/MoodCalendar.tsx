@@ -2,27 +2,36 @@ import { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./MoodCalendar.css";
+import { EmojiPicker } from "../EmojiPicker/EmojiPicker";
 
 export function MoodCalendar() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [showPicker, setShowPicker] = useState<boolean | null>(false);
 
-  const handleDateChange = (date: Date) => {
-    setSelectedDate(date);
-    const mood = prompt(
-      `Quelle est ton humeur pour le ${date.toLocaleDateString(
-        "fr-FR"
-      )} ? (emoji)`
-    );
-    if (mood) {
-      const iso = date.toISOString().split("T")[0];
-      localStorage.setItem(iso, mood);
+  const handleDateChange = (value: Date | Date[] | null) => {
+    if (value instanceof Date) {
+      setSelectedDate(value);
+      setShowPicker(true);
+    }
+  };
+  const handleEmojiSelect = (emoji: string) => {
+    if (selectedDate) {
+      const iso = selectedDate.toISOString().split("T")[0];
+      localStorage.setItem(iso, emoji);
+      setShowPicker(false);
     }
   };
 
   return (
     <div className="calendar-container">
       <h2>Historique de tes humeurs</h2>
-
+      {showPicker && selectedDate && (
+        <EmojiPicker
+          date={selectedDate}
+          onSelect={handleEmojiSelect}
+          onClose={() => setShowPicker(false)}
+        />
+      )}
       <Calendar
         onChange={handleDateChange}
         value={selectedDate}
