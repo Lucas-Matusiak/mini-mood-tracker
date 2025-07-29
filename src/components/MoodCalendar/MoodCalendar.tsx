@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Calendar from "react-calendar";
+import Calendar, { type CalendarProps } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./MoodCalendar.css";
 import { EmojiPicker } from "../EmojiPicker/EmojiPicker";
@@ -8,7 +8,7 @@ export function MoodCalendar() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [showPicker, setShowPicker] = useState<boolean | null>(false);
 
-  const handleDateChange = (value: Date | Date[] | null) => {
+  const handleDateChange: CalendarProps["onChange"] = (value) => {
     if (value instanceof Date) {
       setSelectedDate(value);
       setShowPicker(true);
