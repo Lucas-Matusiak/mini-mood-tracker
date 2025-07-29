@@ -7,20 +7,14 @@
   align-items: center;
   font-family: sans-serif;
 }
-
-.emoji {
-  font-size: 2rem;
-  margin-bottom: 0.3rem;
-}
-
 .react-calendar__tile {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60px;       /* fixe la hauteur des cases */
+  min-height: 60px;      
   max-height: 60px;
-  overflow: hidden;       /* évite le débordement */
+  overflow: hidden;       
   padding: 0.25rem;
   box-sizing: border-box;
 }
