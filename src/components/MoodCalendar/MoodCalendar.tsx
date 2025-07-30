@@ -4,7 +4,11 @@ import "react-calendar/dist/Calendar.css";
 import "./MoodCalendar.css";
 import { EmojiPicker } from "../EmojiPicker/EmojiPicker";
 
-export function MoodCalendar() {
+interface MoodCalendarProps {
+  moodByDate: Record<string, string>;
+  setMoodByDate: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+}
+export function MoodCalendar({ moodByDate, setMoodByDate }: MoodCalendarProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [showPicker, setShowPicker] = useState<boolean | null>(false);
 
@@ -16,8 +20,9 @@ export function MoodCalendar() {
   };
   const handleEmojiSelect = (emoji: string) => {
     if (selectedDate) {
-      const iso = selectedDate.toISOString().split("T")[0];
-      localStorage.setItem(iso, emoji);
+      const local = selectedDate.toLocaleDateString("fr-CA");
+      localStorage.setItem(local, emoji);
+      setMoodByDate((prev) => ({ ...prev, [local]: emoji }));
       setShowPicker(false);
     }
   };
@@ -36,8 +41,8 @@ export function MoodCalendar() {
         onChange={handleDateChange}
         value={selectedDate}
         tileContent={({ date, view }) => {
-          const iso = date.toISOString().split("T")[0];
-          const mood = localStorage.getItem(iso);
+          const local = date.toLocaleDateString("fr-CA");
+          const mood = moodByDate[local];
           return view === "month" && mood ? (
             <div className="emoji">{mood}</div>
           ) : null;

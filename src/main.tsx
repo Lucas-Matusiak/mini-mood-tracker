@@ -1,12 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { MoodSelector } from "./components/MoodSelector/MoodSelector.tsx";
-import { MoodCalendar } from "./components/MoodCalendar/MoodCalendar.tsx";
+import { MoodApp } from "./components/MoodApp/MoodApp.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <MoodSelector />
-    <MoodCalendar />
+    <MoodApp />
   </StrictMode>
 );
