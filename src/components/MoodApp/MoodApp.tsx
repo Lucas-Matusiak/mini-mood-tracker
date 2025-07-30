@@ -1,25 +1,41 @@
-import { useEffect, useState } from 'react'
-import { MoodSelector } from '../MoodSelector/MoodSelector'
-import { MoodCalendar } from '../MoodCalendar/MoodCalendar'
+import { useEffect, useState } from "react";
+import { MoodSelector } from "../MoodSelector/MoodSelector";
+import { MoodCalendar } from "../MoodCalendar/MoodCalendar";
+import "./MoodApp.css";
 
 export function MoodApp() {
-  const [moodByDate, setMoodByDate] = useState<Record<string, string>>({})
+  const [moodByDate, setMoodByDate] = useState<Record<string, string>>({});
 
-  // Charger les humeurs depuis localStorage une seule fois
   useEffect(() => {
-    const storedMoods: Record<string, string> = {}
+    const storedMoods: Record<string, string> = {};
     Object.keys(localStorage).forEach((key) => {
       if (/^\d{4}-\d{2}-\d{2}$/.test(key)) {
-        storedMoods[key] = localStorage.getItem(key) || ''
+        storedMoods[key] = localStorage.getItem(key) || "";
       }
-    })
-    setMoodByDate(storedMoods)
-  }, [])
+    });
+    setMoodByDate(storedMoods);
+  }, []);
 
   return (
-    <div>
-      <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
-      <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+    <div className="app-container">
+      <header className="app-header">
+        <h1>Mood Tracker</h1>
+        <p>Exprime ton humeur et visualise ton bien-être</p>
+      </header>
+
+      <main className="main-content">
+        <section className="section mood-selector-section">
+          <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+        </section>
+
+        <section className="section mood-calendar-section">
+          <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+        </section>
+      </main>
+
+      <footer className="app-footer">
+        <p>2025 Lucas Matusiak — Mood Tracker personnel</p>
+      </footer>
     </div>
-  )
+  );
 }
