@@ -43,8 +43,8 @@ export function MoodCalendar({ moodByDate, setMoodByDate }: MoodCalendarProps) {
         tileContent={({ date, view }) => {
           const local = date.toLocaleDateString("fr-CA");
           const mood = moodByDate[local];
-          return view === "month" && mood ? (
-            <div className="emoji">{mood}</div>
+          return view === "month" ? (
+            <div className="emoji">{mood || "\u00A0"}</div>
           ) : null;
         }}
         calendarType="iso8601" // Lundi comme premier jour
