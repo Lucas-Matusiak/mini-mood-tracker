@@ -1,57 +1,76 @@
 import { useState } from "react";
 import "./MoodSelector.css";
 
-interface MoodSelectorProps {
-  moodByDate: Record<string, string>;
-  setMoodByDate: React.Dispatch<React.SetStateAction<Record<string, string>>>;
-}
-
 const moods = [
   { emoji: "😊", label: "Heureux" },
   { emoji: "😐", label: "Neutre" },
   { emoji: "😡", label: "En colère" },
   { emoji: "😴", label: "Fatigué" },
   { emoji: "😢", label: "Triste" },
-  { emoji: "😟", label: "Triste" },
+  { emoji: "😟", label: "Inquiet" },
   { emoji: "😌", label: "Apaisé" },
   { emoji: "❓", label: "?" },
 ];
 
-export function MoodSelector({ moodByDate, setMoodByDate }: MoodSelectorProps) {
-  const [selectedMood, setSelectedMood] = useState<string | null>(null);
+type MoodSelectorProps = {
+  moodByDate: Record<string, string>;
+  setMoodByDate: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+};
 
-  const handleMoodClick = (emoji: string) => {
-    const today = new Date().toLocaleDateString("fr-CA");
-    localStorage.setItem(today, emoji);
-    setMoodByDate({ ...moodByDate, [today]: emoji });
-    setSelectedMood(emoji);
+export function MoodSelector({ moodByDate, setMoodByDate }: MoodSelectorProps) {
+  const [selectedMood, setSelectedMood] = useState<{
+    emoji: string;
+    label: string;
+  } | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleMoodClick = (mood: { emoji: string; label: string }) => {
+    setSelectedMood(mood);
+  };
+
+  const handleSubmit = () => {
+    if (selectedMood) {
+      const date = new Date().toISOString().split("T")[0];
+      localStorage.setItem(date, selectedMood.emoji);
+      setMoodByDate((prev) => ({ ...prev, [date]: selectedMood.emoji }));
+      setIsSubmitted(true);
+    }
   };
 
   return (
     <div className="mood-selector">
-      <h2>Comment tu te sens aujourd'hui ?</h2>
-      <h3>
-        Choisis l'emoji qui correspond le mieux à ce que tu as ressenti durant
-        cette journée
-      </h3>
-      <div className="mood-grid">
-        {moods.map((mood) => (
-          <button
-            key={mood.emoji}
-            onClick={() => handleMoodClick(mood.emoji)}
-            className={`mood-card ${
-              selectedMood === mood.emoji ? "active" : ""
-            }`}
-            aria-label={mood.label}
-          >
-            {mood.emoji}
-          </button>
-        ))}
-      </div>
-      {selectedMood && (
-        <p className="confirmation">
-          Ton humeur a été enregistrée : {selectedMood}
-        </p>
+      {isSubmitted ? (
+        <div className="confirmation-block">
+          <h3>✅ Ton humeur a été enregistrée</h3>
+          <p>
+            {selectedMood?.emoji} <strong>{selectedMood?.label}</strong> pour
+            aujourd’hui.
+          </p>
+        </div>
+      ) : (
+        <>
+          <h2>Comment tu te sens aujourd'hui ?</h2>
+          <h3>Choisis l'emoji qui correspond à ton ressenti</h3>
+          <div className="mood-grid">
+            {moods.map((mood) => (
+              <button
+                key={mood.emoji}
+                onClick={() => handleMoodClick(mood)}
+                className={`mood-card ${
+                  selectedMood?.emoji === mood.emoji ? "active" : ""
+                }`}
+                aria-label={mood.label}
+              >
+                {mood.emoji}
+              </button>
+            ))}
+          </div>
+          {selectedMood && (
+            <button className="validate-btn" onClick={handleSubmit}>
+              Valider l’humeur
+            </button>
+          )}
+        </>
       )}
     </div>
   );

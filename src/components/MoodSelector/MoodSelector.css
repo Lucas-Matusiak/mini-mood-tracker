@@ -64,3 +64,27 @@
 h3{
   color: rgb(128, 128, 128);
 }
+.validate-btn {
+  margin-top: 2rem;
+  background-color: var(--accent);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.validate-btn:hover {
+  background-color: #a8cfa2;
+}
+
+.confirmation-block {
+  background-color: #eaffea;
+  border: 2px solid #b4e2b4;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
