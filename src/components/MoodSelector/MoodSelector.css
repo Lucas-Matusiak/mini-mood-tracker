@@ -1,7 +1,8 @@
 .mood-selector {
   text-align: center;
-  margin: 2rem;
   font-family: sans-serif;
+  padding: 1em;
+  margin: 0;
 }
 
 .mood-btn {
