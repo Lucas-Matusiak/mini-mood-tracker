@@ -80,11 +80,76 @@ h3{
   background-color: #a8cfa2;
 }
 
-.confirmation-block {
-  background-color: #eaffea;
-  border: 2px solid #b4e2b4;
-  border-radius: 12px;
-  padding: 2rem;
+.confirmation-block.clean {
+  text-align: center;
   max-width: 400px;
   margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.confirmation-block.clean h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #3A3A3A;
+}
+
+.confirmation-block.clean p {
+  color: #4A4A4A;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.mood-highlight {
+  font-weight: 600;
+  color: #A4C8E1;
+}
+
+.checkmark-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.checkmark-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #A4C8E1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: scaleIn 0.5s ease-out;
+}
+
+.checkmark {
+  width: 32px;
+  height: 32px;
+  stroke: #fff;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  animation: stroke 0.4s ease-out forwards;
+}
+
+@keyframes stroke {
+  from {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+  }
+  to {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

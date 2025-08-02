@@ -40,10 +40,24 @@ export function MoodSelector({ moodByDate, setMoodByDate }: MoodSelectorProps) {
   return (
     <div className="mood-selector">
       {isSubmitted ? (
-        <div className="confirmation-block">
-          <h3>✅ Ton humeur a été enregistrée</h3>
+        <div className="confirmation-block clean">
+          <div className="checkmark-wrapper">
+            <div className="checkmark-circle">
+              <svg className="checkmark" viewBox="0 0 52 52">
+                <path
+                  className="checkmark-check"
+                  fill="none"
+                  d="M14 27l8 8 16-16"
+                />
+              </svg>
+            </div>
+          </div>
+          <h3>Humeur enregistrée !</h3>
           <p>
-            {selectedMood?.emoji} <strong>{selectedMood?.label}</strong> pour
+            Tu te sens{" "}
+            <span className="mood-highlight">
+              {selectedMood?.emoji} {selectedMood?.label}
+            </span>{" "}
             aujourd’hui.
           </p>
         </div>
