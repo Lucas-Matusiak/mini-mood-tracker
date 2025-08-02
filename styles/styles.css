@@ -1,0 +1,54 @@
+/* styles/shared.css */
+:root {
+  --bg: #FAFAFA;
+  --primary: #A4C8E1;
+  --secondary: #D9D6E5;
+  --accent: #BFD8B8;
+  --border: #E0E0E0;
+  --text-secondary: #9FA6B2;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rounded {
+  border-radius: 12px;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-md {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.text-muted {
+  color: var(--text-secondary);
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+.btn {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  background-color: var(--primary);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #8fb3cd;
+}
