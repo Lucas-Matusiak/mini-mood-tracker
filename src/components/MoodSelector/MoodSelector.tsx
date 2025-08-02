@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./MoodSelector.css";
+import { MoodConfirmation } from "../MoodConfirmation/MoodConfirmation";
 
 const moods = [
   { emoji: "😊", label: "Heureux" },
@@ -39,28 +40,12 @@ export function MoodSelector({ moodByDate, setMoodByDate }: MoodSelectorProps) {
 
   return (
     <div className="mood-selector">
-      {isSubmitted ? (
-        <div className="confirmation-block clean">
-          <div className="checkmark-wrapper">
-            <div className="checkmark-circle">
-              <svg className="checkmark" viewBox="0 0 52 52">
-                <path
-                  className="checkmark-check"
-                  fill="none"
-                  d="M14 27l8 8 16-16"
-                />
-              </svg>
-            </div>
-          </div>
-          <h3>Humeur enregistrée !</h3>
-          <p>
-            Tu te sens{" "}
-            <span className="mood-highlight">
-              {selectedMood?.emoji} {selectedMood?.label}
-            </span>{" "}
-            aujourd’hui.
-          </p>
-        </div>
+      {isSubmitted && selectedMood ? (
+        <MoodConfirmation
+          emoji={selectedMood.emoji}
+          label={selectedMood.label}
+          onEdit={() => setIsSubmitted(false)}
+        />
       ) : (
         <>
           <h2>Comment tu te sens aujourd'hui ?</h2>
