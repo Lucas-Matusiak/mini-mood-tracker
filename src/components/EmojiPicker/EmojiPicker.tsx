@@ -14,7 +14,7 @@ const moods = [
   { emoji: "😢", label: "Triste" },
   { emoji: "😟", label: "Inquiet" },
   { emoji: "😌", label: "Apaisé" },
-  { emoji: "❓", label: "?" },
+  { emoji: "❓", label: "Inconnue" },
 ];
 
 export function EmojiPicker({ date, onSelect, onClose }: EmojiPickerProps) {

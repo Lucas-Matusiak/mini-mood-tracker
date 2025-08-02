@@ -10,7 +10,7 @@ const moods = [
   { emoji: "😢", label: "Triste" },
   { emoji: "😟", label: "Inquiet" },
   { emoji: "😌", label: "Apaisé" },
-  { emoji: "❓", label: "?" },
+  { emoji: "❓", label: "Inconnue" },
 ];
 
 type MoodSelectorProps = {
@@ -18,7 +18,7 @@ type MoodSelectorProps = {
   setMoodByDate: React.Dispatch<React.SetStateAction<Record<string, string>>>;
 };
 
-export function MoodSelector({ moodByDate, setMoodByDate }: MoodSelectorProps) {
+export function MoodSelector({ setMoodByDate }: MoodSelectorProps) {
   const [selectedMood, setSelectedMood] = useState<{
     emoji: string;
     label: string;
@@ -60,7 +60,8 @@ export function MoodSelector({ moodByDate, setMoodByDate }: MoodSelectorProps) {
                 }`}
                 aria-label={mood.label}
               >
-                {mood.emoji}
+                <div className="mood-emoji">{mood.emoji}</div>
+                <div className="mood-label">{mood.label}</div>
               </button>
             ))}
           </div>

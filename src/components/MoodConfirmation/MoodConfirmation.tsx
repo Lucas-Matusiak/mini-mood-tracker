@@ -16,7 +16,7 @@ export function MoodConfirmation({ emoji, label, onEdit }: MoodConfirmationProps
       </div>
       <h3>Humeur enregistrée !</h3>
       <p>
-        Tu te sens aujourd’hui : <span className="mood-label">{emoji} {label}</span>
+        Aujourd’hui tu te sens : <span className="confirmation-label ">{emoji} {label}</span>
       </p>
       {onEdit && (
         <button className="edit-btn" onClick={onEdit}>
