@@ -24,16 +24,16 @@ export function MoodApp() {
       </header>
 
       <main className="main-content">
-        <section className="section mood-selector-section">
+        <section className="card mood-selector-section">
           <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
         </section>
 
-        <section className="section mood-calendar-section">
+        <section className="card mood-calendar-section">
           <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
         </section>
       </main>
 
-      <footer className="app-footer">
+      <footer className="app-footer text-align: center">
         <p>2025 Lucas Matusiak — Mood Tracker personnel</p>
       </footer>
     </div>

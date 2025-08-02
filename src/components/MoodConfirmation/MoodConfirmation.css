@@ -10,7 +10,7 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: #A4C8E1;
+  background: var(--accent);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,20 +31,18 @@
 
 .confirmation-label {
   font-weight: 600;
-  color: #4A4A4A;
-  font-size: 1.1rem;
+  color: var(--primary);
 }
 
 .edit-btn {
   margin-top: 1.5rem;
   background-color: transparent;
-  border: 1px solid #A4C8E1;
+  border: 1px solid var(--tertiary);
   padding: 0.5rem 1rem;
   border-radius: 8px;
   font-size: 1rem;
-  color: #3A3A3A;
+  color: var(--primary);
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .edit-btn:hover {
@@ -74,6 +72,12 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -55,7 +55,7 @@ export function MoodSelector({ setMoodByDate }: MoodSelectorProps) {
               <button
                 key={mood.emoji}
                 onClick={() => handleMoodClick(mood)}
-                className={`mood-card ${
+                className={`mood-card rounded ${
                   selectedMood?.emoji === mood.emoji ? "active" : ""
                 }`}
                 aria-label={mood.label}
@@ -66,7 +66,7 @@ export function MoodSelector({ setMoodByDate }: MoodSelectorProps) {
             ))}
           </div>
           {selectedMood && (
-            <button className="validate-btn" onClick={handleSubmit}>
+            <button className="validate-btn btn" onClick={handleSubmit}>
               Valider l’humeur
             </button>
           )}

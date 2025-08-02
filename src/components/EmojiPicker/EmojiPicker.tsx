@@ -29,7 +29,7 @@ export function EmojiPicker({ date, onSelect, onClose }: EmojiPickerProps) {
             <button
               key={emoji}
               onClick={() => onSelect(emoji)}
-              className="emoji-option"
+              className="emoji-option rounded"
               aria-label={label}
             >
               <div className="emoji">{emoji}</div>
