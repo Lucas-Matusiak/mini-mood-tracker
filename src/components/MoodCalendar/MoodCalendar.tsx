@@ -40,6 +40,7 @@ export function MoodCalendar({ moodByDate, setMoodByDate }: MoodCalendarProps) {
       <Calendar
         onChange={handleDateChange}
         value={selectedDate}
+        maxDate={new Date()}
         tileContent={({ date, view }) => {
           const local = date.toLocaleDateString("fr-CA");
           const mood = moodByDate[local];
