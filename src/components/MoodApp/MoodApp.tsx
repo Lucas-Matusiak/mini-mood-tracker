@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MoodSelector } from "../MoodSelector/MoodSelector";
 import { MoodCalendar } from "../MoodCalendar/MoodCalendar";
+import { MoodChart } from "../MoodChart/MoodChart";
 import "./MoodApp.css";
 
 export function MoodApp() {
@@ -30,6 +31,10 @@ export function MoodApp() {
 
         <section className="card mood-calendar-section">
           <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+        </section>
+
+        <section >
+          <MoodChart moodByDate={moodByDate}  />
         </section>
       </main>
 
