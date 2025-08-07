@@ -1,89 +1,34 @@
-.emoji-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.emoji-modal-content {
-  background-color: var(--bg);
+.mood-chart {
+  background: white;
   border-radius: 16px;
   padding: 2rem 1rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  width: 90%;
-  max-width: 450px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-width: 480px;
+  width: 100%;
+  margin: 1rem auto;
   text-align: center;
 }
 
-.emoji-scroll-container {
+.mood-chart-filter {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-.emoji-option {
-  width: 80px; 
-  height: 80px;
-  max-width: 80%;
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
-  text-align: center;
-  overflow: hidden;
-  word-break: break-word;
-}
-.emoji-option:hover {
-  transform: scale(1.05);
-}
-
-.emoji-label {
-  font-size: 0.75rem;
-  margin-top: 0.25rem;
-  color: var(--text-secondary);
-  line-height: 1rem;
-  max-width: 100%;
-}
-.close-btn {
-  margin-top: 1.5rem;
-  padding: 0.5rem 1.2rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--tertiary);
-  color: #ffffff;
+.mood-chart-filter button {
+  background: transparent;
+  border: 1px solid #d2d2d2;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
 }
 
-.close-btn:hover {
-  background-color: var(--tertiary-hover);
-}
-
-@media (max-width: 480px) {
-  .emoji-option {
-    height: 64px;
-    width: 64px;
-    font-size: 1.3rem;
-  }
-
-  .emoji-label {
-    font-size: 0.65rem;
-  }
-
-  .emoji-modal-content {
-    padding: 1rem;
-  }
+.mood-chart-filter button.active {
+  background-color: #d6c7f2;
+  border-color: #c2b4ea;
+  color: #4c3580;
+  font-weight: bold;
 }

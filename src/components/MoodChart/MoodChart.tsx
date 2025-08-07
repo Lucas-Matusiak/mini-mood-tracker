@@ -1,42 +1,111 @@
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts'
-import './MoodChart.css'
+import { useState, useMemo } from "react";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
+import { moodColors } from "../../utils/moodColors";
+import "./MoodChart.css";
 
-const COLORS = ['#A4C8E1', '#D9D6E5', '#BFD8B8', '#FDC5C5', '#E0B0FF', '#FFD580', '#B0BEC5', '#CFD8DC']
+type MoodChartProps = {
+  moodByDate: Record<string, string>;
+};
 
-function groupMoods(moodByDate: Record<string, string>) {
-  const counter: Record<string, number> = {}
-  Object.values(moodByDate).forEach((mood) => {
-    counter[mood] = (counter[mood] || 0) + 1
-  })
-  return Object.entries(counter).map(([mood, count]) => ({ name: mood, value: count }))
-}
+type Filter = "week" | "month" | "6months";
 
-export function MoodChart({ moodByDate }: { moodByDate: Record<string, string> }) {
-  const data = groupMoods(moodByDate)
+export function MoodChart({ moodByDate }: MoodChartProps) {
+  const [filter, setFilter] = useState<Filter>("month");
 
-  if (data.length === 0) return null
+  const now = new Date();
+
+  const fromDate = useMemo(() => {
+    const date = new Date();
+    if (filter === "week") date.setDate(now.getDate() - 6);
+    else if (filter === "month") date.setMonth(now.getMonth() - 1);
+    else if (filter === "6months") date.setMonth(now.getMonth() - 6);
+    return date;
+  }, [filter]);
+
+  const filteredMoods = useMemo(() => {
+    return Object.entries(moodByDate)
+      .map(([dateStr, emoji]) => ({ date: new Date(dateStr), emoji }))
+      .filter(({ date }) => date >= fromDate && date <= now);
+  }, [moodByDate, fromDate, now]);
+
+  const chartData = useMemo(() => {
+    const counts: Record<string, number> = {};
+    filteredMoods.forEach(({ emoji }) => {
+      counts[emoji] = (counts[emoji] || 0) + 1;
+    });
+    const total = filteredMoods.length;
+    return Object.entries(counts).map(([emoji, count]) => ({
+      emoji,
+      value: count,
+      percentage: ((count / total) * 100).toFixed(1),
+    }));
+  }, [filteredMoods]);
+
+  const startDate = fromDate.toLocaleDateString("fr-FR");
+  const endDate = now.toLocaleDateString("fr-FR");
 
   return (
     <div className="mood-chart">
-      <h2>Répartition des humeurs</h2>
-      <ResponsiveContainer width="100%" height={250}>
-        <PieChart>
-          <Pie
-            dataKey="value"
-            data={data}
-            outerRadius={80}
-            innerRadius={50}
-            paddingAngle={4}
-            label
+      <h3>Répartition des humeurs</h3>
+      <p className="mood-chart-range">
+        {startDate} — {endDate}
+      </p>
+
+      <div className="mood-chart-filter">
+        {["week", "month", "6months"].map((key) => (
+          <button
+            key={key}
+            onClick={() => setFilter(key as Filter)}
+            className={filter === key ? "active" : ""}
           >
-            {data.map((entry, index) => (
-              <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend verticalAlign="bottom" height={36} />
-        </PieChart>
-      </ResponsiveContainer>
+            {key === "week" ? "Semaine" : key === "month" ? "Mois" : "6 mois"}
+          </button>
+        ))}
+      </div>
+
+      {chartData.length === 0 ? (
+        <p>Aucune humeur enregistrée pour cette période.</p>
+      ) : (
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              dataKey="value"
+              data={chartData}
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              label={({ emoji, percentage }) => `${emoji} ${percentage}%`}
+            >
+              {chartData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={moodColors[entry.emoji] || "#ccc"}
+                />
+              ))}
+            </Pie>
+            <Tooltip
+              formatter={(value: number, _: string, props: any) => {
+                const label = props.payload.emoji;
+                const percent = props.payload.percentage;
+                return [`${value} fois (${percent}%)`, label];
+              }}
+            />
+            <Legend
+              formatter={(value: string, entry: any) => {
+                const emoji = entry.payload.emoji;
+                return `${emoji}`;
+              }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      )}
     </div>
-  )
+  );
 }
