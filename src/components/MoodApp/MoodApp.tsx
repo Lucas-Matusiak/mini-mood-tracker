@@ -24,18 +24,16 @@ export function MoodApp() {
         <p>Exprime ton humeur et visualise ton bien-être</p>
       </header>
 
-      <main className="main-content">
-        <section className="card mood-selector-section">
+      <main className="app-container">
+        <section className="mood-main-panel">
           <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
-        </section>
-
-        <section className="card mood-calendar-section">
           <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
         </section>
 
-        <section >
-          <MoodChart moodByDate={moodByDate}  />
-        </section>
+        <aside className="mood-insights-panel">
+          <h2>Indicateurs</h2>
+          <MoodChart moodByDate={moodByDate} />
+        </aside>
       </main>
 
       <footer className="app-footer text-align: center">
