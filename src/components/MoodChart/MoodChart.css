@@ -38,3 +38,8 @@
   color: #4c3580;
   font-weight: bold;
 }
+.mood-chart .recharts-legend-item {
+  display: inline-flex !important;
+  align-items: center;
+  margin-right: 12px;
+}

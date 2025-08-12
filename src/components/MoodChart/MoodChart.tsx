@@ -52,7 +52,7 @@ export function MoodChart({ moodByDate }: MoodChartProps) {
   const endDate = now.toLocaleDateString("fr-FR");
 
   return (
-    <div className="mood-chart">
+    <div className="mood-chart card no-border">
       <h3>Répartition des humeurs</h3>
       <p className="mood-chart-range">
         {startDate} — {endDate}
@@ -73,15 +73,15 @@ export function MoodChart({ moodByDate }: MoodChartProps) {
       {chartData.length === 0 ? (
         <p>Aucune humeur enregistrée pour cette période.</p>
       ) : (
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={400}>
           <PieChart>
             <Pie
               dataKey="value"
               data={chartData}
               cx="50%"
-              cy="50%"
-              outerRadius={100}
-              label={({ emoji, percentage }) => `${emoji} ${percentage}%`}
+              cy="45%"
+              outerRadius="80%"
+              label={false}
             >
               {chartData.map((entry, index) => (
                 <Cell
@@ -98,9 +98,20 @@ export function MoodChart({ moodByDate }: MoodChartProps) {
               }}
             />
             <Legend
-              formatter={(value: string, entry: any) => {
+              layout="horizontal"
+              verticalAlign="bottom"
+              align="center"
+              wrapperStyle={{
+                fontSize: "0.8rem",
+                marginTop: "10px",
+                whiteSpace: "normal",
+                textAlign: "center",
+                maxWidth: "90%",
+              }}
+              formatter={(_: string, entry: any) => {
                 const emoji = entry.payload.emoji;
-                return `${emoji}`;
+                const percent = entry.payload.percentage;
+                return `${emoji} — ${percent}%`;
               }}
             />
           </PieChart>

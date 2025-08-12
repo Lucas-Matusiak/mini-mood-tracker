@@ -26,8 +26,12 @@ export function MoodApp() {
 
       <main className="app-container">
         <section className="mood-main-panel">
-          <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
-          <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+          <div className="card">
+            <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+          </div>
+          <div className="card">
+            <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+          </div>
         </section>
 
         <aside className="mood-insights-panel">
