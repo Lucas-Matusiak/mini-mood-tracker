@@ -1,34 +1,102 @@
-.mood-chart {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem 1rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  max-width: 480px;
-  width: 100%;
-  margin: 1rem auto;
-  text-align: center;
-}
-
-.mood-chart-filter {
+/* Overlay de la modal */
+.emoji-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Contenu de la modal */
+.emoji-modal-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Titre */
+.emoji-modal-content h3 {
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+/* Scroll si beaucoup d’options */
+.emoji-scroll-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-height: 250px;
+  overflow-y: auto;
+  justify-content: center;
   margin-bottom: 1rem;
 }
 
-.mood-chart-filter button {
-  background: transparent;
-  border: 1px solid #d2d2d2;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+/* Chaque bouton d’humeur */
+.emoji-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--secondary);
+  border-radius: 12px;
+  padding: 0.5rem 0.8rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+  min-width: 70px;
 }
 
-.mood-chart-filter button.active {
-  background-color: #d6c7f2;
-  border-color: #c2b4ea;
-  color: #4c3580;
-  font-weight: bold;
+.emoji-option:hover {
+  background: var(--secondary-hover);
+  transform: scale(1.05);
+}
+
+.emoji {
+  font-size: 1.8rem;
+}
+
+.emoji-label {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* Bouton fermer */
+.close-btn {
+  margin-top: 1rem;
+  background: var(--primary);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.close-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
