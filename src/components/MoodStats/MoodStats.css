@@ -1,0 +1,89 @@
+/* Container sobre : pas de carte complète ici pour éviter la “double bordure”
+   si l’aside est déjà stylé. */
+.mstats {
+  margin-top: 0.5rem;
+}
+
+.mstats-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+/* Podium responsive */
+.mstats-podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Petite carte minimaliste pour chaque humeur */
+.mstats-card {
+  position: relative;
+  min-width: 96px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+/* Badge de rang */
+.mstats-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--tertiary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* Taille d’emoji selon le rang (effet podium) */
+.mstats-emoji {
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.rank-1 .mstats-emoji { font-size: 2.2rem; }
+.rank-2 .mstats-emoji { font-size: 1.9rem; }
+.rank-3 .mstats-emoji { font-size: 1.7rem; }
+
+/* Couleurs de fond douces par rang (palette du site) */
+.rank-1 { background: var(--secondary-hover); }
+.rank-2 { background: #d3cce873; /* léger bleu en cohérence avec --tertiary */ }
+.rank-3 { background: #d3cce852; /* léger vert en cohérence avec --accent */ }
+
+.mstats-count {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.mstats-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Mobile : resserrer un peu */
+@media (max-width: 480px) {
+  .mstats-card {
+    min-width: 88px;
+    padding: 10px 12px;
+  }
+  .rank-1 .mstats-emoji { font-size: 2rem; }
+  .rank-2 .mstats-emoji { font-size: 1.8rem; }
+  .rank-3 .mstats-emoji { font-size: 1.6rem; }
+}

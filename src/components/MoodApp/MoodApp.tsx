@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { MoodSelector } from "../MoodSelector/MoodSelector";
 import { MoodCalendar } from "../MoodCalendar/MoodCalendar";
 import { MoodChart } from "../MoodChart/MoodChart";
+import { MoodStats} from "../MoodStats/MoodStats"
 import "./MoodApp.css";
 
 export function MoodApp() {
@@ -37,6 +38,7 @@ export function MoodApp() {
         <aside className="mood-insights-panel">
           <h2>Indicateurs</h2>
           <MoodChart moodByDate={moodByDate} />
+          <MoodStats moodByDate={moodByDate}/>
         </aside>
       </main>
 

@@ -15,11 +15,12 @@ type MoodChartProps = {
 };
 
 type Filter = "week" | "month" | "6months";
+const now = new Date();
 
 export function MoodChart({ moodByDate }: MoodChartProps) {
   const [filter, setFilter] = useState<Filter>("month");
 
-  const now = new Date();
+  
 
   const fromDate = useMemo(() => {
     const date = new Date();
