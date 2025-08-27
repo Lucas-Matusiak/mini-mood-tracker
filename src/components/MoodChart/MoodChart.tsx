@@ -53,8 +53,8 @@ export function MoodChart({ moodByDate }: MoodChartProps) {
   const endDate = now.toLocaleDateString("fr-FR");
 
   return (
-    <div className="mood-chart card no-border">
-      <h3>Répartition des humeurs</h3>
+    <div className="mood-chart">
+      <h2>Répartition des humeurs</h2>
       <p className="mood-chart-range">
         {startDate} — {endDate}
       </p>

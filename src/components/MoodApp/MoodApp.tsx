@@ -31,22 +31,29 @@ export function MoodApp() {
         {/* colonne gauche : selector + calendar (scrollable si contenu trop grand) */}
         <section className="left-column">
           <div className="card">
-            <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+            <MoodSelector
+              moodByDate={moodByDate}
+              setMoodByDate={setMoodByDate}
+            />
           </div>
 
           <div className="card">
-            <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
+            <MoodCalendar
+              moodByDate={moodByDate}
+              setMoodByDate={setMoodByDate}
+            />
           </div>
         </section>
 
-        {/* colonne droite : indicateurs (sticky) */}
         <aside className="right-column">
           <div className="insights-wrapper">
-            <h2>Indicateurs</h2>
-            <div className="insight-card">
+            {/* carte pour le graphique */}
+            <div className="card insights-chart-card">
               <MoodChart moodByDate={moodByDate} />
             </div>
-            <div className="insight-card">
+
+            {/* carte pour le top 3 */}
+            <div className="card insights-stats-card">
               <MoodStats moodByDate={moodByDate} />
             </div>
           </div>

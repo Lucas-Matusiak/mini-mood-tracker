@@ -28,7 +28,7 @@ export function MoodStats({ moodByDate }: MoodStatsProps) {
 
   return (
     <div className="mstats">
-      <h3 className="mstats-title">Top 3 des humeurs</h3>
+      <h2 className="mstats-title">Top 3 des humeurs</h2>
 
       <div className="mstats-podium">
         {top3.map(({ emoji, count, rank }) => (
