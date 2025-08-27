@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MoodSelector } from "../MoodSelector/MoodSelector";
 import { MoodCalendar } from "../MoodCalendar/MoodCalendar";
 import { MoodChart } from "../MoodChart/MoodChart";
-import { MoodStats} from "../MoodStats/MoodStats"
+import { MoodStats } from "../MoodStats/MoodStats";
 import "./MoodApp.css";
 
 export function MoodApp() {
@@ -19,30 +19,41 @@ export function MoodApp() {
   }, []);
 
   return (
-    <div className="app-container">
+    <div className="app-root">
       <header className="app-header">
-        <h1>Mood Tracker</h1>
-        <p>Exprime ton humeur et visualise ton bien-être</p>
+        <div className="header-inner">
+          <h1>Mood Tracker</h1>
+          <p>Exprime ton humeur et visualise ton bien-être</p>
+        </div>
       </header>
 
-      <main className="app-container">
-        <section className="mood-main-panel">
+      <main className="main-grid">
+        {/* colonne gauche : selector + calendar (scrollable si contenu trop grand) */}
+        <section className="left-column">
           <div className="card">
             <MoodSelector moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
           </div>
+
           <div className="card">
             <MoodCalendar moodByDate={moodByDate} setMoodByDate={setMoodByDate} />
           </div>
         </section>
 
-        <aside className="mood-insights-panel">
-          <h2>Indicateurs</h2>
-          <MoodChart moodByDate={moodByDate} />
-          <MoodStats moodByDate={moodByDate}/>
+        {/* colonne droite : indicateurs (sticky) */}
+        <aside className="right-column">
+          <div className="insights-wrapper">
+            <h2>Indicateurs</h2>
+            <div className="insight-card">
+              <MoodChart moodByDate={moodByDate} />
+            </div>
+            <div className="insight-card">
+              <MoodStats moodByDate={moodByDate} />
+            </div>
+          </div>
         </aside>
       </main>
 
-      <footer className="app-footer text-align: center">
+      <footer className="app-footer">
         <p>2025 Lucas Matusiak — Mood Tracker personnel</p>
       </footer>
     </div>
