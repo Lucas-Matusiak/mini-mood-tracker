@@ -23,23 +23,25 @@ export function MoodStats({ moodByDate }: MoodStatsProps) {
   }, [moodByDate]);
 
   if (total === 0 || top3.length === 0) {
-    return <p className="mstats-empty">Pas encore de données pour établir un top.</p>;
+    return (
+      <p className="mstats-empty">Pas encore de données pour établir un top.</p>
+    );
   }
 
   return (
     <div className="mstats">
       <h2 className="mstats-title">Top 3 des humeurs</h2>
-
       <div className="mstats-podium">
         {top3.map(({ emoji, count, rank }) => (
           <div key={emoji} className={`mstats-card rank-${rank}`}>
             <span className="mstats-badge">{rank}</span>
-            <span className="mstats-emoji" aria-hidden>
-              {emoji}
-            </span>
-            <span className="mstats-count">{count}</span>
+            <div className="mstats-content">
+              <span className="mstats-emoji" aria-hidden>
+                {emoji}
+              </span>
+              <span className="mstats-count">{count}</span>
+            </div>
           </div>
-          
         ))}
       </div>
     </div>

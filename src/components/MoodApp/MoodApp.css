@@ -67,7 +67,6 @@
 
 /* wrapper sticky qui contient les cartes d'indicateurs */
 .insights-wrapper {
-  position: sticky;
   top: 1.25rem;
   display: flex;
   flex-direction: column;

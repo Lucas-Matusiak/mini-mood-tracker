@@ -1,21 +1,14 @@
 /* Container sobre : pas de carte complète ici pour éviter la “double bordure”
    si l’aside est déjà stylé. */
-.mstats {
-  margin-top: 0.5rem;
-}
-
-.mstats-title {
-  font-size: 1.1rem;
-  color: var(--text-dark);
-}
 
 /* Podium responsive */
 .mstats-podium {
   display: flex;
-  justify-content: center;
   align-items: flex-end;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top : 22px;
+  margin-bottom: 16px;
 }
 
 /* Petite carte minimaliste pour chaque humeur */
@@ -45,7 +38,10 @@
   justify-content: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
-
+.mstats-content{
+  display: flex;
+  align-items: center;
+}
 /* Taille d’emoji selon le rang (effet podium) */
 .mstats-emoji {
   display: flex;
