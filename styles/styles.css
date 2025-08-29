@@ -1,18 +1,17 @@
 :root {
-  --bg: #fff8e9;;
+  --bg: #fff8e9;
   --primary: #424874;
-  --primary-hover : #616aaf;
+  --primary-hover: #616aaf;
   --secondary: #d9d6e5;
   --secondary-hover: #e7e3f3;
-  --tertiary: #A4C8E1;
-  --tertiary-hover : #8FB3D0;
-  --accent: #519E8A;
+  --tertiary: #a4c8e1;
+  --tertiary-hover: #8fb3d0;
+  --accent: #519e8a;
   --border: #e0e0e0;
-  --text-secondary: #656a72;
+  --text-secondary: #3a3a3a;
   --text-dark: #3a3a3a;
   --font-family: "Poppins", "Segoe UI", sans-serif;
 }
-
 body {
   margin: 0;
   padding: 0;
@@ -25,10 +24,12 @@ h1,
 h2,
 h3 {
   margin-bottom: 1rem;
-  color: var(--primary)
 }
-
-h3{
+h1 {
+  font-weight: 800;
+  font-size: 40px;
+}
+h3 {
   color: var(--text-secondary);
   font-weight: 500;
 }
@@ -106,6 +107,12 @@ button {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

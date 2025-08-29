@@ -45,7 +45,7 @@ export function MoodApp() {
           </div>
         </section>
 
-        <aside className="right-column">
+        <aside className="right-column" aria-label="indicators">
           <div className="insights-wrapper">
             {/* carte pour le graphique */}
             <div className="card insights-chart-card">

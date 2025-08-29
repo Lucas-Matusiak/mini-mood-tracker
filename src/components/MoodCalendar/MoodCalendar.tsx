@@ -45,11 +45,12 @@ export function MoodCalendar({ moodByDate, setMoodByDate }: MoodCalendarProps) {
           const local = date.toLocaleDateString("fr-CA");
           const mood = moodByDate[local];
           return view === "month" ? (
-            <div className="emoji">{mood || "\u00A0"}</div>
+            <h3 className="emoji">{mood || "\u00A0"}</h3>
           ) : null;
         }}
         calendarType="iso8601" // Lundi comme premier jour
         locale="fr-FR"
+        aria-label="day"
       />
     </div>
   );

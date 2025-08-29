@@ -1,10 +1,10 @@
 export const moodColors: Record<string, string> = {
   "😊": "#FFD166", // Jaune doux
-  "😐": "#CCCCCC", // Gris neutre
-  "😡": "#EF476F", // Rouge vif
-  "😴": "#06D6A0", // Vert d'eau
+  "😐": "#2d42ffff", // Gris neutre
+  "😡": "#9c0529ff", // Rouge vif
+  "😴": "#ff5d5dff", // Vert d'eau
   "😢": "#118AB2", // Bleu doux
-  "😟": "#F78C6B", // Orange pâle
+  "😟": "#ff9100ff", // Orange pâle
   "😌": "#BDB2FF", // Lavande
-  "❓": "#AAAAAA", // Inconnu
+  "❓": "#7c73cfff", // Inconnu
 };

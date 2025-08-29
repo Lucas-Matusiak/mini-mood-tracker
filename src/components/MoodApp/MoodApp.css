@@ -1,13 +1,3 @@
-/* =========================================
-   MoodApp layout CSS (header / main grid / footer)
-   ========================================= */
-
-/* variables (héritées du :root global si présentes) */
-:root {
-  /* rien à redéfinir ici si tu définis déjà les variables globales */
-}
-
-/* racine de l'app */
 .app-root {
   min-height: 100vh;
   display: flex;
@@ -24,15 +14,15 @@
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
-  text-align: left;
+  text-align: center;
 }
 .header-inner h1 {
   margin: 0;
-  font-size: 1.35rem;
   color: var(--primary);
 }
 .header-inner p {
   margin: 0.25rem 0 0;
+  font-size: 20px;
   color: var(--text-secondary);
 }
 
@@ -160,7 +150,6 @@
 
 /* small screens: ensure charts and lists don't overflow */
 @media (max-width: 480px) {
-  .header-inner h1 { font-size: 1.05rem; }
   .insights-chart-card .mood-chart { max-width: 260px; }
   .mood-chart .recharts-legend-wrapper { gap: 6px; font-size: 0.85rem; }
 }
