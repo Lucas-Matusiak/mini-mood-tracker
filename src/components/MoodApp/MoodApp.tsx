@@ -61,7 +61,8 @@ export function MoodApp() {
       </main>
 
       <footer className="app-footer">
-        <p>2025 Lucas Matusiak — Mood Tracker personnel</p>
+        <p>2025 Lucas Matusiak — Mood Tracker</p>
+        <p>Projet personnel sans but lucratif</p>
       </footer>
     </div>
   );
