@@ -2,14 +2,15 @@
   --bg: #fff8e9;
   --primary: #424874;
   --primary-hover: #616aaf;
-  --secondary: #d9d6e5;
+  --background-primary : #e3dff0;
+  --secondary: #e1deecd2;
   --secondary-hover: #e7e3f3;
   --tertiary: #a4c8e1;
   --tertiary-hover: #8fb3d0;
   --accent: #519e8a;
   --border: #e0e0e0;
   --text-secondary: #3a3a3a;
-  --text-dark: #3a3a3a;
+  --text-dark: #424874;
   --font-family: "Poppins", "Segoe UI", sans-serif;
 }
 body {
@@ -19,7 +20,9 @@ body {
   background-color: var(--bg);
   color: var(--text-dark);
 }
-
+*{
+  font-weight: 600;
+}
 h1,
 h2,
 h3 {

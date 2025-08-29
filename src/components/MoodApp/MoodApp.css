@@ -7,7 +7,7 @@
 
 /* ---------------- Header ---------------- */
 .app-header {
-  background: var(--secondary);
+  background: var(--background-primary);
   border-bottom: 1px solid var(--border);
   padding: 1.25rem 1.5rem;
 }
@@ -110,7 +110,7 @@
 
 /* ---------------- Footer ---------------- */
 .app-footer {
-  background: var(--secondary);
+  background: var(--background-primary);
   border-top: 1px solid var(--border);
   padding: 0.9rem 1.5rem;
   margin-top: 1rem;

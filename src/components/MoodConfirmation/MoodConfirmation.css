@@ -28,12 +28,17 @@
   fill: none;
   animation: stroke 0.4s ease-out forwards;
 }
-
+p{
+  font-weight: 500;
+}
 .confirmation-label {
   font-weight: 600;
   color: var(--primary);
 }
-
+.confirmation-label span {
+  font-weight: 800;
+  color: var(--primary);
+}
 .edit-btn {
   margin-top: 1.5rem;
   background-color: transparent;

@@ -31,7 +31,7 @@
 }
 
 .mood-chart-filter button.active {
-  background-color: #d6c7f2;
+  background-color: var(--secondary);
   border-color: #c2b4ea;
   color: #4c3580;
   font-weight: bold;
