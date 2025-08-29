@@ -1,44 +1,377 @@
+/* ======================================
+   MoodCalendar.css — miniature cards style
+   ====================================== */
+
+/* conteneur général : on garde la zone propre */
 .calendar-container {
-  padding: 0; 
+  padding: 0;
   margin: 0;
   border: none;
   background-color: transparent;
-  box-shadow: none;
   text-align: center;
 }
 
-.emoji {
-  font-size: 1.2rem;
-  margin-top: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 24px;
-  line-height: 1;
+/* --- Structure de la grille : augmenter l'écart entre cases --- */
+/* react-calendar crée la grille avec .react-calendar__month-view__weekdays (entêtes)
+   et .react-calendar__month-view__days (cases). On augmente le gap. */
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 12px; /* espace entre les mini-cards */
+  padding: 1rem; /* espace autour de la grille */
 }
 
-
-/* Calendrier React */
+/* retirer le fond brut du calendrier pour laisser les cartes ressortir */
 .react-calendar {
   border: none;
   font-family: inherit;
   width: 100%;
   max-width: 100%;
   background-color: transparent;
+  padding: 0;
 }
 
-.react-calendar__tile--now {
-  background: var(--secondary) !important;
-  border-radius: 8px ;
+/* --- Style des entêtes (Lun Mar ...) --- */
+.react-calendar__month-view__weekdays {
+  margin-bottom: 6px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  padding: 0 1rem;
+}
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
 }
 
+/* --- Chaque case devient une mini-card --- */
+.react-calendar__tile {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  min-height: 72px;
+  padding: 10px 8px;
+  background: #eaf4fb; /* plus contrasté que #f7fbfe */
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 10px rgba(31, 58, 86, 0.1); /* plus marqué */
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s;
+  color: var(--text-dark);
+}
+
+/* vider le style par défaut "active/now" trop fort */
+.react-calendar__tile--now,
 .react-calendar__tile--active {
-  background-color: var(--tertiary) !important ;
-  color: white ;
-  border-radius: 8px;
+  background: #d8eef8 !important; /* bleu clair plus visible */
+  border-radius: 12px !important;
+  box-shadow: 0 8px 18px rgba(31, 58, 86, 0.15); /* contraste renforcé */
 }
 
+/* hover : léger levé de la carte */
 .react-calendar__tile:hover {
-  background-color: var(--secondary-hover) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(31, 58, 86, 0.18); /* plus profond */
+}
+/* --- Alignement du numéro de jour (toujours en haut) --- */
+/* React Calendar place le numéro en tant que contenu texte du tile.
+   On le rend visuellement net en forçant un style pour le premier élément
+   et en gardant une taille fixe pour la zone emoji. */
+.react-calendar__tile abbr,
+.react-calendar__tile > span, /* fallback selon structure HTML */
+.react-calendar__tile {
+  /* numéro en haut : petite police, grisée */
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.35; /* plus atténué */
+  background: rgba(234, 244, 251, 0.5); /* fond léger mais pas blanc pur */
+  box-shadow: none;
+}
+
+/* --- Zone emoji : fixe en hauteur pour garder l'alignement --- */
+.react-calendar__tile .emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px; /* réserve la place même si pas d'emoji */
+  width: 100%;
+  font-size: 1.25rem;
+  margin-top: 4px;
+  line-height: 1;
+}
+
+/* si pas d'emoji, on conserve l'espace (on insère un espace insécable depuis JSX) */
+.react-calendar__tile .emoji:empty {
+  visibility: hidden;
+}
+
+/* --- Style état sélectionné plus visible (couleur theme) --- */
+.react-calendar__tile--active {
+  background: var(--tertiary) !important; /* teal doux */
+  color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 10px 26px rgba(46, 117, 140, 0.22) !important; /* bien visible */
+}
+
+/* jour courant (today) : encadrement discret si pas sélectionné */
+.react-calendar__tile--now:not(.react-calendar__tile--active) {
+  border: 1px dashed rgba(46, 117, 140, 0.18);
+}
+
+/* --- Navigation (prev/next) --- */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 6px;
+}
+.react-calendar__navigation button {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
   border-radius: 8px;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+.react-calendar__navigation button:enabled:hover {
+  background: var(--secondary-hover);
+}
+
+/* --- Mieux gérer la zone du mois pour centrer le titre --- */
+.react-calendar__month-view__weekdays__weekday,
+.react-calendar__month-view__weekNumbers {
+  text-transform: uppercase;
+}
+
+/* --- Responsiveness : plus d'espace sur large écrans, case plus grande --- */
+@media (min-width: 1100px) {
+  .react-calendar__month-view__days {
+    gap: 16px;
+    padding: 1.5rem;
+  }
+  .react-calendar__tile {
+    min-height: 88px;
+    padding: 12px;
+    border-radius: 14px;
+  }
+  .react-calendar__tile .emoji {
+    height: 34px;
+    font-size: 1.4rem;
+  }
+} /* ======================================
+   MoodCalendar.css — miniature cards style
+   Alignement entêtes <-> colonnes PERFECT
+   ====================================== */
+
+/* variables d’espacement communes */
+:root {
+  --cal-side: 16px; /* padding horizontal de la grille */
+  --cal-gap: 12px; /* espace entre colonnes/tiles */
+}
+
+.calendar-container {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+}
+
+/* --------- SHARED GRID GEOMETRY (ALIGNEMENT) ---------- */
+/* Navigation (mois précédent/suivant) alignée avec la grille */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--cal-side);
+  margin-bottom: 6px;
+}
+.react-calendar__navigation button {
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+.react-calendar__navigation button:enabled:hover {
+  background: var(--secondary-hover);
+}
+
+/* En-têtes des jours (LUN…DIM) : même grille que les tiles */
+.react-calendar__month-view__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--cal-gap);
+  padding: 0 var(--cal-side);
+  margin: 0 0 6px 0; /* évite les marges parasites */
+  box-sizing: border-box;
+}
+
+/* IMPORTANT : abbr par défaut peut être “inline” + souligné en pointillé.
+   On le bloque en block 100% + pas de soulignement => centrage réel dans sa colonne. */
+.react-calendar__month-view__weekdays__weekday abbr[title] {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+/* Style visuel du label */
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 0; /* hauteur cohérente */
+  border-radius: 10px; /* optionnel, juste pour le look */
+}
+
+/* Grille des jours : EXACTEMENT la même géométrie que les headers */
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: var(--cal-gap);
+  padding: 0 var(--cal-side) var(--cal-side);
+  box-sizing: border-box;
+}
+
+/* Retirer le fond du calendrier pour laisser respirer les cartes */
+.react-calendar {
+  border: none;
+  font-family: inherit;
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  padding: 0;
+}
+
+/* ---------------- Tiles = mini-cards ------------------ */
+.react-calendar__tile {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  min-height: 72px;
+  padding: 10px 8px;
+  background: #eaf4fb; /* plus contrasté que #f7fbfe */
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 10px rgba(31, 58, 86, 0.1);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s;
+  color: var(--text-dark);
+}
+
+/* Numéro du jour (dans le tile) */
+.react-calendar__tile abbr,
+.react-calendar__tile > span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Cases hors mois courant */
+.react-calendar__tile.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.35;
+  background: rgba(234, 244, 251, 0.5);
+  box-shadow: none;
+}
+
+/* Zone emoji fixe pour alignement vertical */
+.react-calendar__tile .emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 100%;
+  font-size: 1.25rem;
+  margin-top: 4px;
+  line-height: 1;
+}
+.react-calendar__tile .emoji:empty {
+  visibility: hidden;
+}
+
+/* Hover / états */
+.react-calendar__tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(31, 58, 86, 0.18);
+}
+.react-calendar__tile--now,
+.react-calendar__tile--active {
+  background: #d8eef8 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 18px rgba(31, 58, 86, 0.15);
+}
+.react-calendar__tile--active {
+  background: var(--tertiary) !important;
+  color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 10px 26px rgba(46, 117, 140, 0.22) !important;
+}
+.react-calendar__tile--now:not(.react-calendar__tile--active) {
+  border: 1px dashed rgba(46, 117, 140, 0.18);
+}
+
+.react-calendar__month-view__weekdays {
+  display: grid !important;
+}
+/* ---------------- Responsive ---------------- */
+@media (min-width: 1100px) {
+  :root {
+    --cal-side: 24px;
+    --cal-gap: 16px;
+  }
+  .react-calendar__tile {
+    min-height: 88px;
+    padding: 12px;
+    border-radius: 14px;
+  }
+  .react-calendar__tile .emoji {
+    height: 34px;
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 480px) {
+  :root {
+    --cal-side: 10px;
+    --cal-gap: 8px;
+  }
+  .react-calendar__tile {
+    min-height: 64px;
+    padding: 8px;
+    border-radius: 10px;
+  }
+  .react-calendar__tile .emoji {
+    height: 24px;
+    font-size: 1.1rem;
+  }
+}
+
+/* --- petit ajustement pour mobile --- */
+@media (max-width: 480px) {
+  .react-calendar__month-view__days {
+    gap: 8px;
+    padding: 0.6rem;
+  }
+  .react-calendar__tile {
+    min-height: 64px;
+    padding: 8px;
+    border-radius: 10px;
+  }
+  .react-calendar__tile .emoji {
+    height: 24px;
+    font-size: 1.1rem;
+  }
 }
